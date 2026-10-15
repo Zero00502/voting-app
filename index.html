@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f8f8f4" />
+  <title>Interactive Access — Admit One</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ticket-edge" aria-hidden="true"></div>
+  <div class="page">
+    <header class="masthead">
+      <div><div class="eyebrow">FOETICKET / INTERACTIVE EXPERIENCES</div><div class="brand">interactive<br>access <span>›</span></div></div>
+      <div class="header-right"><div class="spark">✳</div><div>ADMIT ONE<br><small>2026 / 001</small></div></div>
+    </header>
+    <div class="dash"></div>
+    <main>
+      <section class="intro">
+        <p class="kicker">YOUR TICKET IS NOW ACTIVE</p>
+        <h1>YOU'RE PART<br>OF THE <em>EXPERIENCE.</em></h1>
+        <p>Three folds. Three questions. Your answers become part of this presentation.</p>
+        <div class="instructions"><span class="num">01</span> Listen for the cue to unfold your ticket.<br><span class="num">02</span> Find the word printed beside that fold.<br><span class="num">03</span> Enter it here and vote. See the combined results at the end.</div>
+      </section>
+      <section class="status" aria-live="polite"><span id="connection-dot" class="dot"></span><span id="mode-label">Checking vote connection…</span><span id="progress">0 / 3 answered</span></section>
+      <section id="stage" class="stage" aria-live="polite"></section>
+      <section class="closing"><div class="eyebrow">THE BIG QUESTION</div><p>How can people meaningfully influence live events — without losing the experience itself?</p></section>
+    </main>
+    <footer><div class="barcode" aria-hidden="true"></div><div>INTERACTIVE ACCESS · MASTER THESIS PRESENTATION<br><small>ONE TICKET. MULTIPLE POSSIBLE OUTCOMES.</small></div></footer>
+  </div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
