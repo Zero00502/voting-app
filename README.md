@@ -6,7 +6,7 @@ A mobile-first 3-question audience experience with one combined end-of-presentat
 
 Edit `config.js` to match the words printed **beside** folds 1–3 on your handout. Defaults:
 - Fold 1: PROVOKING
-- Fold 2: CREATIVE
+- Fold 2: PROACTIVE
 - Fold 3: IMAGINATIVE
 
 These are placeholders! Change them to your actual words before printing.
@@ -30,7 +30,7 @@ Open `index.html` in a browser. No installation needed. Voting runs in **preview
 
 Use Netlify Drop (https://app.netlify.com/drop) to drag-and-drop the entire folder, or deploy it to GitHub Pages / Vercel. Once you have your actual public URL, generate a QR code that points to it. Replace the mock QR image in Figma — the QR codes in generated ticket mockups are not functional.
 
-For privacy, collect no names or identifying details; this prototype stores question numbers, choices, event ID and timestamps in Supabase. The backend provider may still log standard connection data.
+For privacy, collect no names or identifying details; this prototype stores question numbers, choices, event ID, a random per-device participant ID and timestamps in Supabase. The participant ID lets the shared poll count each device only once per question. The backend provider may still log standard connection data.
 
 ## During the 10-minute presentation
 

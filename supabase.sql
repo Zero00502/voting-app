@@ -3,11 +3,18 @@
 create table if not exists public.votes (
   id bigint generated always as identity primary key,
   event_id text not null,
+  participant_id text not null,
   question integer not null check (question between 0 and 2),
   choice integer not null check (choice between 0 and 3),
   created_at timestamptz not null default now()
 );
+-- Upgrade an earlier version of the table without losing its votes.
+alter table public.votes add column if not exists participant_id text;
+update public.votes set participant_id = 'legacy-' || id where participant_id is null;
+alter table public.votes alter column participant_id set not null;
 create index if not exists votes_event_question_idx on public.votes (event_id, question);
+create unique index if not exists votes_participant_question_idx
+  on public.votes (event_id, participant_id, question);
 alter table public.votes enable row level security;
 create policy "public can read demo votes" on public.votes for select to anon using (true);
 create policy "public can submit demo votes" on public.votes for insert to anon with check (true);

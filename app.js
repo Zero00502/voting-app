@@ -2,7 +2,7 @@
   'use strict';
   const cfg = window.ACCESS_CONFIG;
   const questions = [
-    { title:'WHEN DOES WATCHING BECOME PARTICIPATING?', subtitle:'Which kind of influence would make a live experience interesting to you?', options:['Choose what happens next','Shape something together with others','Change the environment or atmosphere','Ask questions and receive a response'] },
+    { title:'WHEN DOES PARTICIPATION BECOME A DISTRACTION?', subtitle:'Which kind of influence would make a live experience interesting to you?', options:['Choose what happens next','Shape something together with others','Change the environment or atmosphere','Ask questions and receive a response'] },
     { title:'HOW WOULD YOU DESIGN THE UNPREDICTABLE?', subtitle:'Imagine you are organizing an interactive event. What would you prioritize?', options:['Predefined branches with audience choices','Freely changing outcomes based on live input','A performer or host who can override the system','Small, reliable interactions throughout the event'] },
     { title:'WHAT MATTERS MOST IN A LIVE INTERACTION?', subtitle:'Choose the most important principle for an experience you would want to attend.', options:['Knowing that my action made a difference','Taking part without looking at my phone for long','Connecting and collaborating with other people','A smooth and reliable experience'] },
   ];
@@ -11,8 +11,14 @@
   const label = document.getElementById('mode-label');
   const dot = document.getElementById('connection-dot');
   const storageKey = `ia-${cfg.eventId}-answers`;
+  const participantKey = `ia-${cfg.eventId}-participant`;
   let answers = {};
   try { answers = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch {}
+  let participantId = localStorage.getItem(participantKey);
+  if (!participantId) {
+    participantId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    localStorage.setItem(participantKey, participantId);
+  }
   let current = 0;
   let pollTimer = null;
   const connected = Boolean(cfg.supabaseUrl && cfg.supabaseAnonKey);
@@ -31,7 +37,8 @@
   }
   async function sendVote(i, choice) {
     if (!connected) return;
-    const r = await fetch(apiUrl(),{method:'POST',headers:{...headers(),Prefer:'return=minimal'},body:JSON.stringify({event_id:cfg.eventId,question:i,choice})});
+    const url = `${apiUrl()}?on_conflict=event_id,participant_id,question`;
+    const r = await fetch(url,{method:'POST',headers:{...headers(),Prefer:'resolution=ignore-duplicates,return=minimal'},body:JSON.stringify({event_id:cfg.eventId,participant_id:participantId,question:i,choice})});
     if (!r.ok) throw new Error('Vote was not saved. Please try again.');
   }
   function save() {localStorage.setItem(storageKey,JSON.stringify(answers));progress.textContent=`${Object.keys(answers).length} / 3 answered`;}
