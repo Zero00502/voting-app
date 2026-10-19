@@ -49,3 +49,11 @@ The three questions and four answer choices each are at the top of `app.js` in t
 ## Final results reveal
 
 Votes stay hidden until all 3 questions have been answered on a phone. The final screen shows each question, each option’s percentage and vote count, and highlights the viewer’s own response. Results refresh every 4 seconds with Supabase connected. Note: this is a **client-side reveal**, not a global presenter-controlled release; participants who complete early can reveal early. For a strictly presenter-controlled reveal, a database-backed release flag would be required.
+
+## Compatible question update
+
+This version keeps the original four-option multiple-choice interface and Supabase's numeric `choice` format. The third question uses emoji in its labels but is stored exactly like the others. A continuous slider would require changes to the UI and possibly the database schema; it has deliberately not been introduced here.
+
+## Further reading section
+
+A collapsed **Research Behind the Project** section now appears below the voting area. It links four of the project's research papers and does not change voting, fold passwords, or Supabase. Edit its citations and links directly in `index.html`. The default collapsed state is intentional so it does not distract during the live presentation.
