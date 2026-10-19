@@ -2,7 +2,7 @@
 window.ACCESS_CONFIG = {
   // Match these words to the ones you print NEXT TO folds 1, 2, and 3 on the ticket.
   // Case, spaces and hyphens are ignored when entered.
-  foldWords: ['PROVOKING', 'PROACTIVE', 'IMAGINATIVE'],
+  foldWords: ['THOUGHT-PROVOKING', 'PROACTIVE', 'IMAGINATIVE'],
   // Make this unique for each presentation to separate its votes from older ones.
   eventId: 'interactive-access-2026-class-test',
   // OPTIONAL: Fill these in after setting up Supabase. Without them the site works

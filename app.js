@@ -1,11 +1,27 @@
 (() => {
   'use strict';
   const cfg = window.ACCESS_CONFIG;
+
+  // All questions use four multiple-choice options.
+  // Supabase stores choice as the selected option index (0, 1, 2, or 3).
   const questions = [
-    { title:'WHEN DOES PARTICIPATION BECOME A DISTRACTION?', subtitle:'Which kind of influence would make a live experience interesting to you?', options:['Choose what happens next','Shape something together with others','Change the environment or atmosphere','Ask questions and receive a response'] },
-    { title:'HOW WOULD YOU DESIGN THE UNPREDICTABLE?', subtitle:'Imagine you are organizing an interactive event. What would you prioritize?', options:['Predefined branches with audience choices','Freely changing outcomes based on live input','A performer or host who can override the system','Small, reliable interactions throughout the event'] },
-    { title:'WHAT MATTERS MOST IN A LIVE INTERACTION?', subtitle:'Choose the most important principle for an experience you would want to attend.', options:['Knowing that my action made a difference','Taking part without looking at my phone for long','Connecting and collaborating with other people','A smooth and reliable experience'] },
+    {
+      title: 'HAVE YOU EVER SHAPED A LIVE EVENT?',
+      subtitle: 'Have you ever influenced what happened during a live event?',
+      options: ['Yes, through a vote', 'Yes, through another interaction', 'No', 'I am not sure']
+    },
+    {
+      title: 'WHO SHOULD BE IN CONTROL?',
+      subtitle: 'How much influence should the audience have over the event?',
+      options: ['Mostly the organizer', 'Organizer-led, with audience choices', 'Shared control', 'Mostly the audience']
+    },
+    {
+      title: 'HOW DID THIS INTERACTION FEEL?',
+      subtitle: 'Did using the ticket and website help you engage with the topic?',
+      options: ['👍 More engaged', '😐 No real difference', '👎 It distracted me', '🤔 Not sure yet']
+    }
   ];
+
   const stage = document.getElementById('stage');
   const progress = document.getElementById('progress');
   const label = document.getElementById('mode-label');
